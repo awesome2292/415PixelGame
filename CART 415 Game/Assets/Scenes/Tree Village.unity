@@ -302,8 +302,8 @@ EdgeCollider2D:
   - {x: -7.1311555, y: -3.8468983}
   - {x: -6.4939814, y: -3.8316839}
   - {x: -4.7975645, y: -3.852061}
-  - {x: -4.6849, y: -3.6609855}
-  - {x: -4.339304, y: -3.7174754}
+  - {x: -4.591412, y: -3.7960227}
+  - {x: -4.318529, y: -3.7694128}
   - {x: -3.9053845, y: -3.733025}
   - {x: -3.5437253, y: -3.7057958}
   - {x: -3.266895, y: -3.723404}
@@ -342,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &954698606
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954698605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -418,8 +418,10 @@ GameObject:
   - component: {fileID: 1119834217}
   - component: {fileID: 1119834219}
   - component: {fileID: 1119834220}
+  - component: {fileID: 1119834221}
+  - component: {fileID: 1119834222}
   m_Layer: 0
-  m_Name: Sprite_Idle
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -535,6 +537,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33, y: 0.52}
   m_EdgeRadius: 0
+--- !u!114 &1119834221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119834216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c560b9535cebfc0499fb96366060c0c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1119834222}
+  speed: 0.5
+--- !u!95 &1119834222
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119834216}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98977f836bb39f1408277bc0c6e7a315, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1670129783
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919795024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.75, y: -2.79, z: -10}
+  m_LocalPosition: {x: -5.504, y: -2.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
