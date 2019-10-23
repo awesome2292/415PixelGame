@@ -17,13 +17,15 @@ public class CameraController : MonoBehaviour
 
 
 
-    //basically, if camera coordinates are within the map dimmensions, then offset.x = 0 and offset.y = 0.
+    //basically, if camera coordinates are within the map dimmensions, the sprite remains centered in the camera view
     //else, set the x and y coordinates of the camera to a fixed value that it won't exceed
     void Update()
     {
-       
-        transform.position = new Vector3(player.position.x, player.position.y, minCameraPos.z); // Camera follows the player with specified offset position
+        // Camera follows the player with specified out of bounds x and y coords
+        transform.position = new Vector3(player.position.x, player.position.y, minCameraPos.z);
     
+        //if the camera exceeds the set bounds, then its x and y coords remain fixed
+        //until the player returns back in bounds of the map
         if (bounds)
         {
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, minCameraPos.x, maxCameraPos.x),

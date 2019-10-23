@@ -5,44 +5,85 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text nameText, dialogueText;
 
+    //DIALOGUE MANAGER CLASS
+    //This class is responsible for all the display of the content within the dialogues
+    //and the dialogue box itself
+
+    //Display Text for the name and message
+    public Text nameText, dialogueText;
+    public bool hidden; //still don't know if this is needed or not (responsible for 'hiding' the box)
+    private GameObject dialogueBox;
+
+    //This queue allows for a new array of sentences to form each time you interact with the object
     private Queue<string> sentences;
 
 
 
-    // Start is called before the first frame update
+    // We create a new queue
     void Start()
     {
         sentences = new Queue<string>();
+
+        if (dialogueBox == null)
+        {
+            dialogueBox = GameObject.Find("DialogueBox");
+        }
+
     }
 
-        public void StartDialogue(Dialogue dialogue) { 
+    //Tried to make this function where you could press 'o', and the sentences would change
+    //everytime you pressed the button. Still doesn't work...
+    public void KeyNextSentence()
+    {
+        if (Input.GetKey("o"))
+        {
+            Debug.Log("NextSentence should be displayed");
+            DisplayNextSentence();
+        }
+    }
+
+    //The StartDialogue function is responsible for initiating the start message each time you press 'i'
+    //And then, by clicking the 'continue' button, the next sentences will display one after the other
+    public void StartDialogue(Dialogue dialogue)
+    {
+
         nameText.text = dialogue.name;
         sentences.Clear();
-
-            foreach(string sentence in dialogue.sentences){
+        dialogueBox.SetActive(true);
+        foreach (string sentence in dialogue.sentences)
+        {
             sentences.Enqueue(sentence);
-            }
+        }
 
         DisplayNextSentence();
-
+        
         }
+
+    //This makes sure that the dialoague box disappears
+    public void DisableDialogueBox()
+    {
+        dialogueBox.SetActive(false);
+    }
     
+    //DisplayNextSentences displays every new sentence in the queue based on a Coroutine Time sequence
+    //If you run out of sentences, then the dialogue will 'end'
     public void DisplayNextSentence()
     {
         if (sentences.Count == 0)
         {
+            
             EndDialogue();
             return;
         }
-
-        string sentence = sentences.Dequeue();
-        StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(sentence));
 
     }
 
+    //This function serves to create the typewriter effect when displaying the sentence
+    //by incrementing each character after the other
     IEnumerator TypeSentence (string sentence)
     {
         dialogueText.text = "";
@@ -53,11 +94,15 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //This function 'ends' the dialogue, which will disable the dialogue box
+    //and have it disappear until prompted again
     void EndDialogue() 
     {
-        Debug.Log("End of conversation");
+        DisableDialogueBox();
+     Debug.Log("End of conversation");
+     
     
     }
 
-  
+
 }
