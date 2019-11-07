@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
    //Checks to see if the associated GameObject is an inventory object or an NPC
 
     //Message that the object or NPC will display when prompted
-    public Dialogue dialogue;
+    public UIManagerNPCs dialogue;
 
     //Bools to check if GameObject is either NPC or Object
     public bool talks;
@@ -19,6 +19,6 @@ public class DialogueTrigger : MonoBehaviour
     //Call the StartDialogue() function from the Dialogue Manager
     public void TriggerDialogue ()
     {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        //FindObjectOfType<UIManagerNPCs>().RunDialogue();
     }
 }

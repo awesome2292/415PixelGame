@@ -6,6 +6,8 @@ TagManager:
   tags:
   - interNPC
   - DialogueBox
+  - Missy
+  - Sissy
   layers:
   - Default
   - TransparentFX
