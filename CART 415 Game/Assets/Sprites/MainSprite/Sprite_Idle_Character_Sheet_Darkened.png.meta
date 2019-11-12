@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: d4d9eadce1d78f84ebef83fda49a11a2
+guid: edaf9298abb55694783ab0c048e079a6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6894771345446010801
-    second: Sprite_Idle_Character_Sheet_0
+      213: -8822677769609038157
+    second: Sprite_Idle_Character_Sheet_Darkened_0
   - first:
-      213: 3356342694794589378
-    second: Sprite_Idle_Character_Sheet_1
+      213: 4045276657906685132
+    second: Sprite_Idle_Character_Sheet_Darkened_1
   - first:
-      213: -3314100421206223259
-    second: Sprite_Idle_Character_Sheet_2
+      213: 9167499227410391426
+    second: Sprite_Idle_Character_Sheet_Darkened_2
   - first:
-      213: -2050503946870213956
-    second: Sprite_Idle_Character_Sheet_3
+      213: 2748812500347578063
+    second: Sprite_Idle_Character_Sheet_Darkened_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -94,11 +94,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite_Idle_Character_Sheet_0
+      name: Sprite_Idle_Character_Sheet_Darkened_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 467e8569b834c57459021163a200b53a
-      internalID: 6894771345446010801
+      spriteID: 083ff7dfb9d77c444af753fd12610951
+      internalID: -8822677769609038157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Idle_Character_Sheet_1
+      name: Sprite_Idle_Character_Sheet_Darkened_1
       rect:
         serializedVersion: 2
         x: 33
@@ -133,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac16e5643a1e13f4584687655ea22459
-      internalID: 3356342694794589378
+      spriteID: bfbc23af338b1084bb62d9cf0b9bf169
+      internalID: 4045276657906685132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Idle_Character_Sheet_2
+      name: Sprite_Idle_Character_Sheet_Darkened_2
       rect:
         serializedVersion: 2
         x: 66
@@ -154,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6107f082d058e704b9d4960e1b94f2fa
-      internalID: -3314100421206223259
+      spriteID: 5a5602103cebb4e4799995dc2c7c8115
+      internalID: 9167499227410391426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_Idle_Character_Sheet_3
+      name: Sprite_Idle_Character_Sheet_Darkened_3
       rect:
         serializedVersion: 2
         x: 99
@@ -175,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cb27a7f477a9624d9ff8349ff028b54
-      internalID: -2050503946870213956
+      spriteID: dcde45d86c5543f49b7b42508f89bab0
+      internalID: 2748812500347578063
       vertices: []
       indices: 
       edges: []
