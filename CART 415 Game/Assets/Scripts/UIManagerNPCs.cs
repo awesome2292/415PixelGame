@@ -32,21 +32,21 @@ public class UIManagerNPCs : MonoBehaviour
             //Subscribe to some events and Begin the Dialogue
             VD.OnNodeChange += UpdateUI;
             VD.OnEnd += End;
-            VD.BeginDialogue(GetComponent<VIDE_Assign>()); //This is the first most important method when using VIDE
+            //VD.BeginDialogue(GetComponent<VIDE_Assign>()); //This is the first most important method when using VIDE
         }
 
     public void Begin(VIDE_Assign dialogue)
     {
         VD.BeginDialogue(dialogue); //Begins dialogue, will call the first OnNodeChange
-        Debug.Log("Entered Begin");
+        //Debug.Log("Entered Begin");
     }
 
     public void Interact(VIDE_Assign dialogue)
     {
         if (!VD.isActive)
         {
-            Debug.Log("Entered Dialogue");
             Begin(dialogue);
+            //Debug.Log(dialogue);
         }
 
     }
@@ -91,10 +91,10 @@ public class UIManagerNPCs : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyUp(continueButton))
-                {
+               //if (Input.GetKeyUp(continueButton))
+               //{
                     Start();
-                }
+               // }
             }
         }
 

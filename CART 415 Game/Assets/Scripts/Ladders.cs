@@ -21,11 +21,6 @@ public class Ladders : MonoBehaviour
             other.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0f, ClimbingSpeed, 0.0f);
         }
 
-        else if(other.tag=="Player" && (Input.GetKey(KeyCode.S) || Input.GetKey("down")))
-        {
-            //Debug.Log("player collides with ladder");
-            other.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0f, ClimbingSpeed, 0.0f);
-        }
     }
 
 }

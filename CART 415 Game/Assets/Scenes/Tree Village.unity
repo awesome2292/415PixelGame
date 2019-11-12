@@ -2494,6 +2494,7 @@ MonoBehaviour:
   - Rock
   - Secretary
   - TriggeredDude
+  - Twins
   - Witch
   assignedIndex: 7
   assignedID: 31001
@@ -3603,6 +3604,7 @@ MonoBehaviour:
   - demo_Narration
   - Example3Dialogue
   - Example4_dialogue
+  - Grumpy
   - Item_LookUp
   - Laura
   - LittleToo
@@ -3613,8 +3615,9 @@ MonoBehaviour:
   - Rock
   - Secretary
   - TriggeredDude
+  - Twins
   - Witch
-  assignedIndex: 9
+  assignedIndex: 10
   assignedID: 6190
   assignedDialogue: LittleToo
   interactionCount: 0
@@ -4491,6 +4494,7 @@ GameObject:
   - component: {fileID: 2023003776}
   - component: {fileID: 2023003777}
   - component: {fileID: 2023003778}
+  - component: {fileID: 2023003779}
   m_Layer: 0
   m_Name: NPC_Smugbirb
   m_TagString: interNPC
@@ -4621,3 +4625,53 @@ MonoBehaviour:
   dialogue: {fileID: 0}
   talks: 1
   item: 0
+--- !u!114 &2023003779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023003773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8b99d8a12e39e4b94d2d7162c7c978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diags:
+  - Charlie
+  - CommentModifier
+  - CrazyCap
+  - DEMO_Condition
+  - demo_Narration
+  - Example3Dialogue
+  - Example4_dialogue
+  - Grumpy
+  - Hawk
+  - Item_LookUp
+  - Laura
+  - LittleToo
+  - Mama
+  - MrCube
+  - NPCOnly
+  - QuestChartDemo
+  - Rock
+  - Secretary
+  - TriggeredDude
+  - Twins
+  - Witch
+  assignedIndex: 8
+  assignedID: 71507
+  assignedDialogue: Hawk
+  interactionCount: 0
+  alias: Smug Hawk
+  overrideStartNode: -1
+  defaultNPCSprite: {fileID: 0}
+  defaultPlayerSprite: {fileID: 0}
+  targetManager: {fileID: 0}
+  preload: 0
+  notuptodate: 0
+  startp: 0
+  loadtag: 
+  langs: []
+  S_playerDiags: []
+  S_actionNodes: []
