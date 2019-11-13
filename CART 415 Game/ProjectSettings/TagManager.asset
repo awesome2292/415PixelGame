@@ -8,6 +8,7 @@ TagManager:
   - DialogueBox
   - Missy
   - Sissy
+  - NewScene
   layers:
   - Default
   - TransparentFX

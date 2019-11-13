@@ -14,6 +14,7 @@ public class SpriteController : MonoBehaviour
 
     //Variables
     public UIManagerNPCs diagUI;
+    public ChangeScene scene;
     public Animator animator;
     public float WalkingSpeed;
     public float RunningSpeed;
@@ -43,8 +44,22 @@ public class SpriteController : MonoBehaviour
             {
                 inTrigger = other.GetComponent<VIDE_Assign>();
             }
-        
-               
+
+        if (other.gameObject.tag == "NewScene")
+        {
+            scene = other.GetComponent<ChangeScene>();
+            scene.leaveScene = true;
+            Debug.Log("leaveScene = " + scene.leaveScene);
+            Debug.Log("newScene = " + scene.newScene);
+        }
+
+        else
+        {
+            scene.leaveScene = false;
+            Debug.Log(scene.leaveScene);
+        }
+
+
     }
 
     //When no longer colliding with an object, the object no longer becomes
@@ -52,6 +67,7 @@ public class SpriteController : MonoBehaviour
     void OnTriggerExit2D()
     {
         inTrigger = null;
+
     }
     
     //This function is responsible for the Horizontal movement of the sprite
