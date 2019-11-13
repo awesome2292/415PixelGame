@@ -15,12 +15,16 @@ public class SpriteController : MonoBehaviour
     //Variables
     public UIManagerNPCs diagUI;
     public ChangeScene scene;
+
     public Animator animator;
     public float WalkingSpeed;
     public float RunningSpeed;
 
     //Stored current VA when inside a trigger
     public VIDE_Assign inTrigger;
+
+    public List<string> Items = new List<string>();
+    public List<string> ItemInventory = new List<string>();
 
 
     void Update()
@@ -53,9 +57,16 @@ public class SpriteController : MonoBehaviour
             Debug.Log("newScene = " + scene.newScene);
         }
 
+        if (other.gameObject.tag == "NewSceneWalk")
+        {
+            scene = other.GetComponent<ChangeScene>();
+            scene.leaveSceneWalk = true;
+        }
+
         else
         {
             scene.leaveScene = false;
+            scene.leaveSceneWalk = false;
             Debug.Log(scene.leaveScene);
         }
 
@@ -81,7 +92,7 @@ public class SpriteController : MonoBehaviour
             transform.position = transform.position + horizontal * WalkingSpeed * Time.deltaTime;
 
             //The sprite walks faster when shift is held down
-            if (Input.GetKey("left shift"))
+            if (Input.GetKey("left shift") || Input.GetKey("right shift"))
             {
                 transform.position = transform.position + horizontal * RunningSpeed * Time.deltaTime;
             }

@@ -9,6 +9,7 @@ TagManager:
   - Missy
   - Sissy
   - NewScene
+  - NewSceneWalk
   layers:
   - Default
   - TransparentFX

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Squirrel House.unity
     guid: f1ae3c675434c3b469a38148d6598ac8
+  - enabled: 1
+    path: Assets/Scenes/Tree Village Exterior.unity
+    guid: 5f204d407f6dbd147877484767df1777
   m_configObjects: {}
