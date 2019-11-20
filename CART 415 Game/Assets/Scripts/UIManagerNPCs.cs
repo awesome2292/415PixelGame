@@ -6,7 +6,8 @@ using VIDE_Data; //Import this to use VIDE Dialogue's VD class
 
 public class UIManagerNPCs : MonoBehaviour
 {
-    public GameObject canvas;
+    public GameObject dialogueBox;
+    public GameObject instructionsBox;
     public GameObject itemPopUp;
     public SpriteController player;
 
@@ -21,12 +22,13 @@ public class UIManagerNPCs : MonoBehaviour
     private List<Text> currentChoices = new List<Text>();
 
     private bool keyDown = false;
+    public bool paused = true;
     bool dialoguePaused = false;
 
     public void Start()
         {
-            canvas = GameObject.Find("Canvas");
-            canvas.GetComponent<CanvasGroup>().alpha = 0.0f;
+
+        dialogueBox.GetComponent<CanvasGroup>().alpha = 0.0f;
 
             //Disable UI when starting just in case
             NPC_text.gameObject.SetActive(false);
@@ -59,6 +61,14 @@ public class UIManagerNPCs : MonoBehaviour
     //Check if a dialogue is active and if we are NOT in a player node in order to continue
     public void Update()
         {
+
+
+        if (Input.anyKey && paused)
+        {
+            Debug.Log("Unpause");
+            instructionsBox.SetActive(false);
+            paused = false;
+        }
 
         var data = VD.nodeData;
         
@@ -96,10 +106,8 @@ public class UIManagerNPCs : MonoBehaviour
             }
             else
             {
-               //if (Input.GetKeyUp(continueButton))
-               //{
+              
                     Start();
-               // }
             }
         }
 
@@ -132,7 +140,7 @@ public class UIManagerNPCs : MonoBehaviour
 
         if (!data.isPlayer) //For NPC. Activate text gameobject and set its text
         {
-                canvas.GetComponent<CanvasGroup>().alpha = 1.0f;
+                dialogueBox.GetComponent<CanvasGroup>().alpha = 1.0f;
                 NPC_name.gameObject.SetActive(true);
                 NPC_text.gameObject.SetActive(true);
                 NPC_text.text = data.comments[data.commentIndex];
@@ -185,7 +193,7 @@ public class UIManagerNPCs : MonoBehaviour
         //Very important that this gets called before we call BeginDialogue again!
         void End(VD.NodeData data)
         {
-        canvas.GetComponent<CanvasGroup>().alpha = 0.0f;
+        dialogueBox.GetComponent<CanvasGroup>().alpha = 0.0f;
         VD.OnNodeChange -= UpdateUI;
             VD.OnEnd -= End;
             VD.EndDialogue(); //Third most important method when using VIDE     

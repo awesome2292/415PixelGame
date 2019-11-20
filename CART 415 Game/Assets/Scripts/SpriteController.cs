@@ -82,7 +82,7 @@ public class SpriteController : MonoBehaviour
     }
     
     //This function is responsible for the Horizontal movement of the sprite
-    void SpriteMove()
+    public void SpriteMove()
     {
         if (!VD.isActive)
         {
