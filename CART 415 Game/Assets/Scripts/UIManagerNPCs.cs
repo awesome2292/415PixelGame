@@ -25,6 +25,7 @@ public class UIManagerNPCs : MonoBehaviour
     public bool paused = true;
     bool dialoguePaused = false;
 
+
     public void Start()
         {
 
@@ -217,83 +218,83 @@ public class UIManagerNPCs : MonoBehaviour
         dialoguePaused = true;
     }
 
-
+    
 
     #region DIALOGUE CONDITIONS 
 
-  //  //DIALOGUE CONDITIONS --------------------------------------------
-  //
-  //  //When this returns true, it means that we did something that alters the progression of the dialogue
-  //  //And we don't want to call Next() this time
-  //  bool PreConditions(VIDE_Assign dialogue)
-  //  {
-  //      var data = VD.nodeData;
-  //
-  //      if (VD.isActive) //Stuff we check while the dialogue is active
-  //      {
-  //          //Check for extra variables
-  //          //This one finds a key named "item" which has the value of the item thats gonna be given
-  //          //If there's an 'item' key, then we will assume there's also an 'itemLine' key and use it
-  //          if (!data.isPlayer)
-  //          {
-  //              if (data.extraVars.ContainsKey("item") && !data.dirty)
-  //              {
-  //                  if (data.commentIndex == (int)data.extraVars["itemLine"])
-  //                  {
-  //                      if (data.extraVars.ContainsKey("item++")) //If we have this key, we use it to increment the value of 'item' by 'item++'
-  //                      {
-  //                          Dictionary<string, object> newVars = data.extraVars; //Clone the current extraVars content
-  //                          int newItem = (int)newVars["item"]; //Retrieve the value we want to change
-  //                          newItem += (int)data.extraVars["item++"]; //Change it as we desire
-  //                          newVars["item"] = newItem; //Set it back   
-  //                          VD.SetExtraVariables(25, newVars); //Send newVars through UpdateExtraVariable method
-  //                      }
-  //
-  //                      //If it's CrazyCap, check his stock before continuing
-  //                      //If out of stock, change override start node
-  //                      if (VD.assigned.alias == "CrazyCap")
-  //                          if ((int)data.extraVars["item"] + 1 >= player.Items.Count)
-  //                              VD.assigned.overrideStartNode = 28;
-  //
-  //
-  //                      if (!player.ItemInventory.Contains(player.Items[(int)data.extraVars["item"]]))
-  //                      {
-  //                          GiveItem((int)data.extraVars["item"]);
-  //                          return true;
-  //                      }
-  //                  }
-  //              }
-  //          }
-  //          else
-  //          {
-  //              if (data.extraVars.ContainsKey("outCondition"))
-  //              {
-  //                  if (data.extraVars.ContainsKey("condInfo"))
-  //                  {
-  //                      int[] nodeIDs = VD.ToIntArray((string)data.extraVars["outCondition"]);
-  //                      if (VD.assigned.interactionCount < nodeIDs.Length)
-  //                          VD.SetNode(nodeIDs[VD.assigned.interactionCount]);
-  //                      else
-  //                          VD.SetNode(nodeIDs[nodeIDs.Length - 1]);
-  //                      return true;
-  //                  }
-  //              }
-  //
-  //          }
-  //      }
-  //      else //Stuff we do right before the dialogue begins
-  //      {
-  //          //Get the item from CrazyCap to trigger this one on Charlie
-  //          if (dialogue.alias == "Mama")
-  //          {
-  //              if (player.ItemInventory.Count > 0 && dialogue.overrideStartNode == -1)
-  //              {
-  //                  dialogue.overrideStartNode = 16;
-  //                  return false;
-  //              }
-  //          }
-  //      }
-  //      return false;
-  //  }
+    //  //DIALOGUE CONDITIONS --------------------------------------------
+    //
+    //  //When this returns true, it means that we did something that alters the progression of the dialogue
+    //  //And we don't want to call Next() this time
+    //  bool PreConditions(VIDE_Assign dialogue)
+    //  {
+    //      var data = VD.nodeData;
+    //
+    //      if (VD.isActive) //Stuff we check while the dialogue is active
+    //      {
+    //          //Check for extra variables
+    //          //This one finds a key named "item" which has the value of the item thats gonna be given
+    //          //If there's an 'item' key, then we will assume there's also an 'itemLine' key and use it
+    //          if (!data.isPlayer)
+    //          {
+    //              if (data.extraVars.ContainsKey("item") && !data.dirty)
+    //              {
+    //                  if (data.commentIndex == (int)data.extraVars["itemLine"])
+    //                  {
+    //                      if (data.extraVars.ContainsKey("item++")) //If we have this key, we use it to increment the value of 'item' by 'item++'
+    //                      {
+    //                          Dictionary<string, object> newVars = data.extraVars; //Clone the current extraVars content
+    //                          int newItem = (int)newVars["item"]; //Retrieve the value we want to change
+    //                          newItem += (int)data.extraVars["item++"]; //Change it as we desire
+    //                          newVars["item"] = newItem; //Set it back   
+    //                          VD.SetExtraVariables(25, newVars); //Send newVars through UpdateExtraVariable method
+    //                      }
+    //
+    //                      //If it's CrazyCap, check his stock before continuing
+    //                      //If out of stock, change override start node
+    //                      if (VD.assigned.alias == "CrazyCap")
+    //                          if ((int)data.extraVars["item"] + 1 >= player.Items.Count)
+    //                              VD.assigned.overrideStartNode = 28;
+    //
+    //
+    //                      if (!player.ItemInventory.Contains(player.Items[(int)data.extraVars["item"]]))
+    //                      {
+    //                          GiveItem((int)data.extraVars["item"]);
+    //                          return true;
+    //                      }
+    //                  }
+    //              }
+    //          }
+    //          else
+    //          {
+    //              if (data.extraVars.ContainsKey("outCondition"))
+    //              {
+    //                  if (data.extraVars.ContainsKey("condInfo"))
+    //                  {
+    //                      int[] nodeIDs = VD.ToIntArray((string)data.extraVars["outCondition"]);
+    //                      if (VD.assigned.interactionCount < nodeIDs.Length)
+    //                          VD.SetNode(nodeIDs[VD.assigned.interactionCount]);
+    //                      else
+    //                          VD.SetNode(nodeIDs[nodeIDs.Length - 1]);
+    //                      return true;
+    //                  }
+    //              }
+    //
+    //          }
+    //      }
+    //      else //Stuff we do right before the dialogue begins
+    //      {
+    //          //Get the item from CrazyCap to trigger this one on Charlie
+    //          if (dialogue.alias == "Mama")
+    //          {
+    //              if (player.ItemInventory.Count > 0 && dialogue.overrideStartNode == -1)
+    //              {
+    //                  dialogue.overrideStartNode = 16;
+    //                  return false;
+    //              }
+    //          }
+    //      }
+    //      return false;
+    //  }
     #endregion
 }

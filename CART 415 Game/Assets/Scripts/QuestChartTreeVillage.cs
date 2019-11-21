@@ -6,10 +6,9 @@ using UnityEngine.UI;
 
 public class QuestChartTreeVillage : MonoBehaviour
 {
-    public static VIDE_Assign assigned;
+    public VIDE_Assign assigned;
 
-
-    public bool questStarted;
+    
     //Tasks
     static int totalInteractions = 12;
     static List<string> interactedWith = new List<string>();
@@ -26,24 +25,8 @@ public class QuestChartTreeVillage : MonoBehaviour
         assigned = GetComponent<VIDE_Assign>();
     }
 
-    void Update()
-    {
-        if (questStarted)
-        {
-            StartQuest(assigned);
-        }
 
-    }
-
-    public void StartQuest(VIDE_Assign dialogue)
-    {
-        if (dialogue.alias == "Mama" && dialogue.overrideStartNode == -1)
-        {
-            VD.assigned.overrideStartNode = 17;
-            return;
-        }
-    }
-
+    
     public static void SaveProgress()
     {
         var player = GameObject.Find("Player").GetComponent<VIDEDemoPlayer>();

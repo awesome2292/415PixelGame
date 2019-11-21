@@ -19,6 +19,8 @@ public class SpriteController : MonoBehaviour
     public Animator animator;
     public float WalkingSpeed;
     public float RunningSpeed;
+    
+    public bool questStarted;
 
     //Stored current VA when inside a trigger
     public VIDE_Assign inTrigger;
@@ -110,4 +112,54 @@ public class SpriteController : MonoBehaviour
             return;
         }
     }
+
+    #region Event Triggers
+    public void StartQuest(bool quest)
+    {
+        if (quest)
+        {
+            Debug.Log("Quest started!");
+            var Mama = GameObject.Find("NPC_MamaCockatoo");
+            var Hawk = GameObject.Find("NPC_Smugbirb");
+            var Grumpy = GameObject.Find("NPC_Grumpy");
+            Mama.GetComponent<VIDE_Assign>().overrideStartNode = 17; 
+            Hawk.GetComponent<VIDE_Assign>().overrideStartNode = 10;
+            Grumpy.GetComponent<VIDE_Assign>().overrideStartNode = 2;
+        }
+
     }
+
+    public void TalkKids(bool quest)
+    {
+        if (quest)
+        {
+            Debug.Log("Spoke to Mama!");
+            var Smol = GameObject.Find("NPC_SmolCockatoo");
+            Smol.GetComponent<VIDE_Assign>().overrideStartNode = 6;
+        }
+
+    }
+
+    public void TalkMama(bool quest)
+    {
+        if (quest)
+        {
+            Debug.Log("Spoke to her son!");
+            var Mama = GameObject.Find("NPC_MamaCockatoo");
+            Mama.GetComponent<VIDE_Assign>().overrideStartNode = 8;
+        }
+
+    }
+
+    public void TalkGrumpy(bool quest)
+    {
+        if (quest)
+        {
+            var Twin1 = GameObject.Find("NPC_Twin1");
+            Twin1.GetComponent<VIDE_Assign>().overrideStartNode = 4;
+        }
+
+    }
+    #endregion
+
+}
