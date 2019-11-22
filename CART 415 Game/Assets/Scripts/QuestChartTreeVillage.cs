@@ -48,7 +48,6 @@ public class QuestChartTreeVillage : MonoBehaviour
 
     public static void LoadProgress()
     {
-        //var player = GameObject.Find("Player").GetComponent<VIDEDemoPlayer>();
 
         if (!PlayerPrefs.HasKey("interactedWith")) return;
 

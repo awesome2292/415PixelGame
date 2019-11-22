@@ -162,4 +162,20 @@ public class SpriteController : MonoBehaviour
     }
     #endregion
 
+    public void GetSeed(bool receive)
+    {
+        Debug.Log("Entered GetSeed()!");
+
+        if (receive)
+        { 
+
+            if (!ItemInventory.Contains("Seed"))
+            {
+                Debug.Log("Receive the seed!");
+                diagUI.GiveItem(0);
+            }
+        }
+    }
+        
+
 }
