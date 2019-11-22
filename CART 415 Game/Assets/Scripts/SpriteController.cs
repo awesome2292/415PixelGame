@@ -160,7 +160,7 @@ public class SpriteController : MonoBehaviour
         }
 
     }
-    #endregion
+    
 
     public void GetSeed(bool receive)
     {
@@ -176,6 +176,80 @@ public class SpriteController : MonoBehaviour
             }
         }
     }
-        
 
+    public void GiveSeed(bool give)
+    {
+        Debug.Log("Entered GiveSeed()!");
+        var Grumpy = GameObject.Find("NPC_Grumpy");
+
+        if (give)
+        {
+
+            if (ItemInventory.Contains("Seed"))
+            {
+                var index = ItemInventory.FindIndex(a => a.Contains("Seed"));
+                Debug.Log("Give the seed!");
+                diagUI.LoseItem(index);
+            }
+
+            else if (!ItemInventory.Contains("Seed"))
+            {
+                VD.EndDialogue();
+                Grumpy.GetComponent<VIDE_Assign>().overrideStartNode = 8;
+            }
+        }
+    }
+
+
+    public void GiveRock(bool give)
+    {
+        Debug.Log("Entered GiveRock()!");
+        var Hawk = GameObject.Find("NPC_Smugbirb");
+
+        if (give)
+        {
+
+            if (ItemInventory.Contains("Rock"))
+            {
+                var index = ItemInventory.FindIndex(a => a.Contains("Rock"));
+                Debug.Log("Give the rock!");
+                diagUI.LoseItem(index);
+            }
+
+            else if (!ItemInventory.Contains("Rock"))
+            {
+                VD.EndDialogue();
+                Hawk.GetComponent<VIDE_Assign>().overrideStartNode = 17;
+            }
+        }
+    }
+
+    public void GetRock(bool receive)
+    {
+        Debug.Log("Entered GetRock()!");
+
+        if (receive)
+        {
+
+            if (!ItemInventory.Contains("Rock"))
+            {
+                Debug.Log("Receive the rock!");
+                diagUI.GiveItem(1);
+                Destroy(GameObject.Find("Rock"));
+            }
+        }
+    }
+
+    public void LeaveRock(bool leave)
+    {
+        Debug.Log("Entered LeaveRock()!");
+
+        if (leave)
+        {                
+         Debug.Log("Leave the rock!");
+         Destroy(GameObject.Find("Rock"));
+            
+        }
+    }
+    #endregion
 }

@@ -106,7 +106,15 @@ public class UIManagerNPCs : MonoBehaviour
                     VD.Next(); //Second most important method when using VIDE
                 }
             }
-            
+
+            //Disable item popup and disable pause
+            if (itemPopUp.activeSelf && Input.GetKeyDown(continueButton))
+            {
+                Debug.Log(itemPopUp.activeSelf);
+                dialoguePaused = false;
+                itemPopUp.SetActive(false);
+            }
+
         }
 
         else
@@ -136,12 +144,12 @@ public class UIManagerNPCs : MonoBehaviour
         }
         else
         {
-            //Disable item popup and disable pause
-            if (itemPopUp.activeSelf)
-            {
-                dialoguePaused = false;
-                itemPopUp.SetActive(false);
-            }
+            ////Disable item popup and disable pause
+            //if (itemPopUp.activeSelf)
+            //{
+            //    dialoguePaused = false;
+            //    itemPopUp.SetActive(false);
+            //}
         }
     }
 
@@ -215,7 +223,7 @@ public class UIManagerNPCs : MonoBehaviour
 
     //This will be called when we reach the end of the dialogue.
     //Very important that this gets called before we call BeginDialogue again!
-    void End(VD.NodeData data)
+    public void End(VD.NodeData data)
     {
         dialogueBox.GetComponent<CanvasGroup>().alpha = 0.0f;
         VD.OnNodeChange -= UpdateUI;
@@ -241,9 +249,19 @@ public class UIManagerNPCs : MonoBehaviour
         dialoguePaused = true;
 
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(item_text.text));
+        StartCoroutine(TypeSentence(item_text.text));        
+    }
 
-        
+    public void LoseItem(int itemIndex)
+    {
+        player.ItemInventory.Remove(player.Items[itemIndex]);
+        itemPopUp.SetActive(true);
+        string text = "You gave the " + player.ItemInventory[itemIndex] + "!";
+        item_text.text = text;
+        dialoguePaused = true;
+
+        StopAllCoroutines();
+        StartCoroutine(TypeSentence(item_text.text));
     }
 
 
