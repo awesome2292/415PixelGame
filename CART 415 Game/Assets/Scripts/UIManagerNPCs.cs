@@ -10,6 +10,7 @@ public class UIManagerNPCs : MonoBehaviour
     public GameObject instructionsBox;
     public GameObject itemPopUp;
     public SpriteController player;
+    public ChangeScene scene;
 
     public Text NPC_text; //References
     public Text NPC_name;
@@ -26,10 +27,17 @@ public class UIManagerNPCs : MonoBehaviour
     public bool paused = true;
     bool dialoguePaused = false;
 
+    void Awake()
+    {
+        // VD.LoadDialogues(); //Load all dialogues to memory so that we dont spend time doing so later
+        //An alternative to this can be preloading dialogues from the VIDE_Assign component!
+
+        //Loads the saved state of VIDE_Assigns and dialogues.
+        VD.LoadState("Tree Village", true);
+    }
 
     public void Start()
     {
-
         dialogueBox.GetComponent<CanvasGroup>().alpha = 0.0f;
 
         //Disable UI when starting just in case
@@ -229,6 +237,9 @@ public class UIManagerNPCs : MonoBehaviour
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= End;
         VD.EndDialogue(); //Third most important method when using VIDE     
+
+        VD.SaveState("Tree Village", true); //Saves VIDE stuff related to EVs and override start nodes
+        QuestChartDemo.SaveProgress();
         WipeAll();
     }
 

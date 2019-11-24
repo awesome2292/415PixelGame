@@ -167,4 +167,12 @@ MonoBehaviour:
   animator: {fileID: 5523661713542762854}
   WalkingSpeed: 0.89
   RunningSpeed: 1.1
+  questStarted: 0
   inTrigger: {fileID: 0}
+  Items:
+  - Seed
+  - Rock
+  - Apple
+  - Stick
+  - Acorn
+  ItemInventory: []

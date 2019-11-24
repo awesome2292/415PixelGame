@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     public Scene newScene;
+    public Transform SpawnPointTree;
+    public Transform SpawnPointRight;
+    public GameObject player;
     public bool leaveScene = false;
     public bool leaveSceneWalk = false;
 
@@ -13,16 +16,20 @@ public class ChangeScene : MonoBehaviour
 
     void Update()
     {
+        
         if (leaveScene && Input.GetKeyDown(KeyCode.I))
         {   
             SceneManager.LoadScene(newScene.handle);
-            DontDestroyOnLoad(GameObject.Find("DialogueBox"));
+            player.transform.position = SpawnPointTree.position;
+
         }
 
         if (leaveSceneWalk)
         {
             SceneManager.LoadScene(newScene.handle);
-            DontDestroyOnLoad(GameObject.Find("DialogueBox"));
+            player.transform.position = SpawnPointRight.position;
         }
     }
+
+
 }

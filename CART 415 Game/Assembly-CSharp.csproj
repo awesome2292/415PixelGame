@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\DialogueTrigger.cs" />
     <Compile Include="Assets\Scripts\Ladders.cs" />
+    <Compile Include="Assets\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\QuestChartTreeVillage.cs" />
     <Compile Include="Assets\Scripts\SpriteController.cs" />
     <Compile Include="Assets\Scripts\UIManagerNPCs.cs" />

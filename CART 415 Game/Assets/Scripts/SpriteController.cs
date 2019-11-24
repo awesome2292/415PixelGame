@@ -67,7 +67,6 @@ public class SpriteController : MonoBehaviour
 
         else
         {
-            scene.leaveScene = false;
             scene.leaveSceneWalk = false;
             Debug.Log(scene.leaveScene);
         }
@@ -75,11 +74,22 @@ public class SpriteController : MonoBehaviour
 
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "NewScene")
+        {
+            scene = other.GetComponent<ChangeScene>();
+            scene.leaveScene = true;
+        }
+    }
+
     //When no longer colliding with an object, the object no longer becomes
     //interactable
     void OnTriggerExit2D()
     {
         inTrigger = null;
+        scene.leaveScene = false;
 
     }
     
@@ -155,8 +165,11 @@ public class SpriteController : MonoBehaviour
     {
         if (quest)
         {
+            Debug.Log("Spoke to Grumpy!");
             var Twin1 = GameObject.Find("NPC_Twin1");
-            Twin1.GetComponent<VIDE_Assign>().overrideStartNode = 4;
+            Twin1.GetComponent<VIDE_Assign>().overrideStartNode = 11;
+            var Twin2 = GameObject.Find("NPC_Twin2");
+            Twin2.GetComponent<VIDE_Assign>().overrideStartNode = 4;
         }
 
     }
@@ -236,6 +249,21 @@ public class SpriteController : MonoBehaviour
                 Debug.Log("Receive the rock!");
                 diagUI.GiveItem(1);
                 Destroy(GameObject.Find("Rock"));
+            }
+        }
+    }
+
+    public void GetApple(bool receive)
+    {
+        Debug.Log("Entered GetApple()!");
+
+        if (receive)
+        {
+
+            if (!ItemInventory.Contains("Apple"))
+            {
+                Debug.Log("Receive the apple!");
+                diagUI.GiveItem(1);
             }
         }
     }
