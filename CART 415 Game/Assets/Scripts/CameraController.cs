@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     // Code from Unity Reference
 
+    public GameObject sprite;
     public Transform player;
 
     public Vector3 minCameraPos;
@@ -13,7 +14,13 @@ public class CameraController : MonoBehaviour
 
     public bool bounds;
 
+    private void Awake()
+    {
+        sprite = GameObject.FindGameObjectWithTag("Player");
+        player = sprite.transform;
 
+    
+    }
 
 
 

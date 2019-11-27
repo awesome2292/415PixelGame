@@ -11,6 +11,7 @@ public class MusicPlayer : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         // if more then one music player is in the scene
         //destroy ourselves
         else

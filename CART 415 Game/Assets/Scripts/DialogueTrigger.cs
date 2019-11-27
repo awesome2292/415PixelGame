@@ -11,14 +11,19 @@ public class DialogueTrigger : MonoBehaviour
     //Message that the object or NPC will display when prompted
     public UIManagerNPCs dialogue;
 
-    //Bools to check if GameObject is either NPC or Object
-    public bool talks;
-    public bool item;
-
-    //TRIGGER DIALOGUE
-    //Call the StartDialogue() function from the Dialogue Manager
-    public void TriggerDialogue ()
+    private void Awake()
     {
-        //FindObjectOfType<UIManagerNPCs>().RunDialogue();
+        int numCanvas = GameObject.FindGameObjectsWithTag("Canvas").Length;
+        if (numCanvas != 1)
+        {
+            Destroy(gameObject);
+        }
+        // if more then one music player is in the scene
+        //destroy ourselves
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
     }
 }

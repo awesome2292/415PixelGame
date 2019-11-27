@@ -22,15 +22,42 @@ public class SpriteController : MonoBehaviour
     
     public bool questStarted;
 
+    //public Transform[] SpawnPoint;
+    //public Transform currentSpawnPoint;
+
     //Stored current VA when inside a trigger
     public VIDE_Assign inTrigger;
 
     public List<string> Items = new List<string>();
     public List<string> ItemInventory = new List<string>();
+    private GameObject[] Sprites;
+
+    private void Awake()
+    {
+        Sprites = GameObject.FindGameObjectsWithTag("Player");
+        if (Sprites.Length!= 1)
+        {
+            Destroy(gameObject);
+        }
+        // if more then one music player is in the scene
+        //destroy ourselves
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        Destroy(GameObject.Find("Sky_loop"));
+    }
 
 
     void Update()
     {
+        if(diagUI == null)
+        {
+            diagUI = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerNPCs>();
+        }
+
+
         //Character Movement with Animation
         SpriteMove();
 
@@ -216,12 +243,11 @@ public class SpriteController : MonoBehaviour
 
     public void GiveRock(bool give)
     {
-        Debug.Log("Entered GiveRock()!");
         var Hawk = GameObject.Find("NPC_Smugbirb");
 
         if (give)
         {
-
+            Debug.Log("Entered GiveRock()!");
             if (ItemInventory.Contains("Rock"))
             {
                 var index = ItemInventory.FindIndex(a => a.Contains("Rock"));
@@ -231,6 +257,7 @@ public class SpriteController : MonoBehaviour
 
             else if (!ItemInventory.Contains("Rock"))
             {
+                Debug.Log("Don't have rock!");
                 VD.EndDialogue();
                 Hawk.GetComponent<VIDE_Assign>().overrideStartNode = 17;
             }

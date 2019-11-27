@@ -7,7 +7,6 @@ using VIDE_Data; //Import this to use VIDE Dialogue's VD class
 public class UIManagerNPCs : MonoBehaviour
 {
     public GameObject dialogueBox;
-    public GameObject instructionsBox;
     public GameObject itemPopUp;
     public SpriteController player;
     public ChangeScene scene;
@@ -31,6 +30,20 @@ public class UIManagerNPCs : MonoBehaviour
     {
         // VD.LoadDialogues(); //Load all dialogues to memory so that we dont spend time doing so later
         //An alternative to this can be preloading dialogues from the VIDE_Assign component!
+        int numUIManagers = GameObject.FindGameObjectsWithTag("UIManager").Length;
+        if (numUIManagers != 1)
+        {
+            Destroy(gameObject);
+        }
+        // if more then one music player is in the scene
+        //destroy ourselves
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteController>();
+        
 
         //Loads the saved state of VIDE_Assigns and dialogues.
         VD.LoadState("Tree Village", true);
@@ -72,15 +85,21 @@ public class UIManagerNPCs : MonoBehaviour
     //Check if a dialogue is active and if we are NOT in a player node in order to continue
     public void Update()
     {
-
-
-        if (Input.anyKey && paused)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Unpause");
-            instructionsBox.SetActive(false);
-            paused = false;
-        }
+            PlayerPrefs.DeleteAll();
+            if (System.IO.Directory.Exists(Application.dataPath + "/VIDE/saves"))
+            {
+                System.IO.Directory.Delete(Application.dataPath + "/VIDE/saves", true);
+                #if UNITY_EDITOR
+                UnityEditor.AssetDatabase.Refresh();
+                #endif
+            }
 
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #endif
+        }
         var data = VD.nodeData;
 
         currentChoices = new List<UnityEngine.UI.Text>();
@@ -150,15 +169,7 @@ public class UIManagerNPCs : MonoBehaviour
         {
             VD.Next(); //We call the next node and populate nodeData with new data. Will fire OnNodeChange.
         }
-        else
-        {
-            ////Disable item popup and disable pause
-            //if (itemPopUp.activeSelf)
-            //{
-            //    dialoguePaused = false;
-            //    itemPopUp.SetActive(false);
-            //}
-        }
+        
     }
 
     //Every time VD.nodeData is updated, this method will be called. (Because we subscribed it to OnNodeChange event)
@@ -239,7 +250,6 @@ public class UIManagerNPCs : MonoBehaviour
         VD.EndDialogue(); //Third most important method when using VIDE     
 
         VD.SaveState("Tree Village", true); //Saves VIDE stuff related to EVs and override start nodes
-        QuestChartDemo.SaveProgress();
         WipeAll();
     }
 

@@ -10,6 +10,9 @@ TagManager:
   - Sissy
   - NewScene
   - NewSceneWalk
+  - ItemBox
+  - UIManager
+  - Canvas
   layers:
   - Default
   - TransparentFX
