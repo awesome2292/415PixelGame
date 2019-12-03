@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newScene:
-    m_Handle: 3
+    m_Handle: 0
   leaveScene: 0
   leaveSceneWalk: 0
 --- !u!61 &2078097550
