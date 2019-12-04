@@ -11,47 +11,51 @@ public class SpriteController : MonoBehaviour
     //This class is essential to the life of the main sprite (player)
     //It controls the movement of the sprite
     //As well as it's ability to interact with objects within the world
+    //And event triggers with the Tree Village quest
 
+    #region VARIABLES
     //Variables
-    public UIManagerNPCs diagUI;
-    public ChangeScene scene;
+    public UIManagerNPCs diagUI; //UIManager code that is crucial for the dialogue system to run
+    public ChangeScene scene; //The new scene assigned to the portal that the player collides with
 
     public Animator animator;
     public float WalkingSpeed;
     public float RunningSpeed;
     
-    public bool questStarted;
-
-    //public Transform[] SpawnPoint;
-    //public Transform currentSpawnPoint;
+    public bool questStarted; //Start the quest when you speak to the Secretary
 
     //Stored current VA when inside a trigger
     public VIDE_Assign inTrigger;
-
-    public List<string> Items = new List<string>();
-    public List<string> ItemInventory = new List<string>();
+        
+    public List<string> Items = new List<string>(); //List for the possible acquireable items
+    public List<string> ItemInventory = new List<string>(); //Items that the player posseses in the current playthrough
     private GameObject[] Sprites;
 
+    #endregion
+
     private void Awake()
-    {
+    {   
+        // if more then one Sprite is in the scene
+        //destroy the one in the scene
         Sprites = GameObject.FindGameObjectsWithTag("Player");
         if (Sprites.Length!= 1)
         {
             Destroy(gameObject);
-        }
-        // if more then one music player is in the scene
-        //destroy ourselves
+        }        
         else
         {
             DontDestroyOnLoad(gameObject);
         }
 
+        //Destroy the Music player from the title screen
         Destroy(GameObject.Find("Sky_loop"));
     }
 
 
     void Update()
     {
+        //If a diagUI isn't assigned to the current UIManager from another scene,
+        //assign it
         if(diagUI == null)
         {
             diagUI = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManagerNPCs>();
@@ -68,6 +72,7 @@ public class SpriteController : MonoBehaviour
         }
     }
 
+    #region COLLIDERS
     //When the sprite collides with an NPC, assign the NPC's VIDE_Assign node
     //to the sprite
     void OnTriggerEnter2D(Collider2D other)
@@ -101,6 +106,9 @@ public class SpriteController : MonoBehaviour
 
     }
 
+    //If the player remains in a scene portal
+    //then change the "leaveScene" boolean to true so that
+    //the player is able to leave the scene when I is pressed
     private void OnTriggerStay2D(Collider2D other)
     {
 
@@ -119,8 +127,10 @@ public class SpriteController : MonoBehaviour
         scene.leaveScene = false;
 
     }
-    
-    //This function is responsible for the Horizontal movement of the sprite
+
+    #endregion
+
+    //This function is responsible for the Horizontal and Vertical movement of the sprite
     public void SpriteMove()
     {
         if (!VD.isActive)
@@ -138,11 +148,10 @@ public class SpriteController : MonoBehaviour
         }
     }
 
-    //Casts a ray to see if we hit an NPC and, if so, we interact
+    //If the Sprite is colliding with an NPC and the I key is pressed, this function will run
     void TryInteract()
     {
         /* Prioritize triggers */
-
         if (inTrigger)
         {            
             diagUI.Interact(inTrigger);
@@ -150,7 +159,9 @@ public class SpriteController : MonoBehaviour
         }
     }
 
-    #region Event Triggers
+    #region EVENT TRIGGERS
+    //List of event trigger functions that change the dialogues after speaking to a certain NPC
+    //or adding an object to the player's inventory when interacted with
     public void StartQuest(bool quest)
     {
         if (quest)
@@ -290,7 +301,7 @@ public class SpriteController : MonoBehaviour
             if (!ItemInventory.Contains("Apple"))
             {
                 Debug.Log("Receive the apple!");
-                diagUI.GiveItem(1);
+                diagUI.GiveItem(2);
             }
         }
     }

@@ -6,44 +6,49 @@ using VIDE_Data; //Import this to use VIDE Dialogue's VD class
 
 public class UIManagerNPCs : MonoBehaviour
 {
+    //UIMANAGERNPC CLASS
+    //This script is responsible for the Dialogue Manager System in the game
+    //Everything related to running through the dialogues of any object or NPC
+    //As well as displaying them on the assigned dialogue boxes
+    //This script is also responsible for any save files that can be overwrited whenever the
+    //Player interacts with any NPCs or objects
+
+    #region VARIABLES
+
+    //Canvas elements
     public GameObject dialogueBox;
     public GameObject itemPopUp;
     public SpriteController player;
     public ChangeScene scene;
 
-    public Text NPC_text; //References
+    public Text NPC_text;
     public Text NPC_name;
     public Text item_text;
-    public Text[] PLAYER_text; //References
+    public Text[] PLAYER_text;
 
     public KeyCode continueButton; //Button to continue
 
-    IEnumerator NPC_TextAnimator;
-
+    //List of choices that the player can choose from
     private List<Text> currentChoices = new List<Text>();
 
     private bool keyDown = false;
     public bool paused = true;
     bool dialoguePaused = false;
 
+    #endregion
+
     void Awake()
     {
-        // VD.LoadDialogues(); //Load all dialogues to memory so that we dont spend time doing so later
-        //An alternative to this can be preloading dialogues from the VIDE_Assign component!
+        //If there exist more than one UIManager in the scene, destroy the copies
         int numUIManagers = GameObject.FindGameObjectsWithTag("UIManager").Length;
         if (numUIManagers != 1)
         {
             Destroy(gameObject);
         }
-        // if more then one music player is in the scene
-        //destroy ourselves
         else
         {
             DontDestroyOnLoad(gameObject);
         }
-
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteController>();
-        
 
         //Loads the saved state of VIDE_Assigns and dialogues.
         VD.LoadState("Tree Village", true);
@@ -51,6 +56,7 @@ public class UIManagerNPCs : MonoBehaviour
 
     public void Start()
     {
+        //Set Canvas alpha to 0 so that it doesn't appear on the screen
         dialogueBox.GetComponent<CanvasGroup>().alpha = 0.0f;
 
         //Disable UI when starting just in case
@@ -85,6 +91,7 @@ public class UIManagerNPCs : MonoBehaviour
     //Check if a dialogue is active and if we are NOT in a player node in order to continue
     public void Update()
     {
+        //If escape is pressed, delete any existing save files
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PlayerPrefs.DeleteAll();
@@ -104,10 +111,9 @@ public class UIManagerNPCs : MonoBehaviour
 
         currentChoices = new List<UnityEngine.UI.Text>();
 
+        //Press S or W to move between the possible choices in the dialogue
         if (VD.isActive)
         {
-
-
             if (!data.pausedAction && data.isPlayer)
             {
                 if (Input.GetKeyDown(KeyCode.S))
@@ -122,6 +128,7 @@ public class UIManagerNPCs : MonoBehaviour
                 }
             }
 
+            //if the continue button is pressed, change to the next sentence
             if (!VD.nodeData.isPlayer && Input.GetKeyUp(continueButton))
             {
                 if (keyDown)
@@ -146,7 +153,6 @@ public class UIManagerNPCs : MonoBehaviour
 
         else
         {
-
             //Disable item popup and disable pause
             if (itemPopUp.activeSelf && Input.GetKeyDown(continueButton))
             {
@@ -175,7 +181,6 @@ public class UIManagerNPCs : MonoBehaviour
     //Every time VD.nodeData is updated, this method will be called. (Because we subscribed it to OnNodeChange event)
     void UpdateUI(VD.NodeData data)
     {
-
         if (data.tag.Length > 0)
             NPC_name.text = data.tag;
         else
@@ -218,6 +223,7 @@ public class UIManagerNPCs : MonoBehaviour
 
     }
 
+    //Creates typewriter effect with the text
     IEnumerator TypeSentence(string sentence)
     {
         NPC_text.text = "";
@@ -260,7 +266,8 @@ public class UIManagerNPCs : MonoBehaviour
         VD.OnEnd -= End;
     }
 
-
+    //This function will add an item to the Player's inventory and display the
+    //itemPopup box
     public void GiveItem(int itemIndex)
     {
         player.ItemInventory.Add(player.Items[itemIndex]);
@@ -273,6 +280,8 @@ public class UIManagerNPCs : MonoBehaviour
         StartCoroutine(TypeSentence(item_text.text));        
     }
 
+    //This function will remove an item from the player's inventory when
+    //They give away an item
     public void LoseItem(int itemIndex)
     {
         player.ItemInventory.Remove(player.Items[itemIndex]);
@@ -284,8 +293,7 @@ public class UIManagerNPCs : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TypeSentence(item_text.text));
     }
-
-
+       
 
     #region DIALOGUE CONDITIONS 
 

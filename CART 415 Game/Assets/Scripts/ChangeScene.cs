@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public Scene newScene;
-    public bool leaveScene = false;
-    public bool leaveSceneWalk = false;
+    //CHANGESCENE CLASS
+    //This script is responsible for changing scenes during gameplay
 
-    // Update is called once per frame
+    public Scene newScene;
+    public bool leaveScene = false; //boolean used to make sure that the player can leave the scene when pressing I
+    public bool leaveSceneWalk = false; //boolean used to make sure that the player can leave onCollision
 
     void Update()
     {
@@ -20,6 +21,11 @@ public class ChangeScene : MonoBehaviour
         if (leaveSceneWalk)
         {
             SceneManager.LoadScene(newScene.handle);
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
         }
     }
 }

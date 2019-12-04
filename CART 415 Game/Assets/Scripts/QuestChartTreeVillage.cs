@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class QuestChartTreeVillage : MonoBehaviour
 {
+    //QUESTCHARTTREEVILLAGE CLASS
+    //This script is responsible for saving and loading progress when the player
+    //interacts with other NPCs or Objects
+    //Does not include inventory progress (yet)
+
     public VIDE_Assign assigned;
 
     

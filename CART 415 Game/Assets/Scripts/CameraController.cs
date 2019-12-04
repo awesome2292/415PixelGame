@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    // Code from Unity Reference
+    //CAMERACONTRLLER CLASS
+    //Used to set the bounds of the camera to the associated map
+    //While attaching it to the player
 
     public GameObject sprite;
     public Transform player;
@@ -14,17 +16,16 @@ public class CameraController : MonoBehaviour
 
     public bool bounds;
 
+    //Find the sprite and assign the camera's coordinates to the player's
     private void Awake()
     {
         sprite = GameObject.FindGameObjectWithTag("Player");
-        player = sprite.transform;
-
-    
+        player = sprite.transform;    
     }
 
 
 
-    //basically, if camera coordinates are within the map dimmensions, the sprite remains centered in the camera view
+    //If camera coordinates are within the map dimmensions, the sprite remains centered in the camera view
     //else, set the x and y coordinates of the camera to a fixed value that it won't exceed
     void Update()
     {

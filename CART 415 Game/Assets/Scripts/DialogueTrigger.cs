@@ -5,11 +5,8 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
    //DIALOGUE TRIGGER CLASS
-   //Serves as a mediation code between the player "i" interaction and the display of the dialogue boxes
-   //Checks to see if the associated GameObject is an inventory object or an NPC
-
-    //Message that the object or NPC will display when prompted
-    public UIManagerNPCs dialogue;
+   //Checks if there are more than one Canvas objects in the scene
+   //If so, destroy the clones
 
     private void Awake()
     {
