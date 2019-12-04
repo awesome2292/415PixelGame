@@ -85,7 +85,7 @@ public class UIManagerNPCs : MonoBehaviour
     //Check if a dialogue is active and if we are NOT in a player node in order to continue
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             PlayerPrefs.DeleteAll();
             if (System.IO.Directory.Exists(Application.dataPath + "/VIDE/saves"))
