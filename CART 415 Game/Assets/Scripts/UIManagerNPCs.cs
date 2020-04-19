@@ -58,7 +58,6 @@ public class UIManagerNPCs : MonoBehaviour
     {
         //Set Canvas alpha to 0 so that it doesn't appear on the screen
         dialogueBox.GetComponent<CanvasGroup>().alpha = 0.0f;
-
         //Disable UI when starting just in case
         NPC_text.gameObject.SetActive(false);
         NPC_name.gameObject.SetActive(false);
@@ -80,10 +79,12 @@ public class UIManagerNPCs : MonoBehaviour
     {
         var doNotInteract = PreConditions(dialogue);
         if (doNotInteract) return;
-
-        if (!VD.isActive)
+        if (player.talk)
         {
-            Begin(dialogue);
+            if (!VD.isActive)
+            {
+                Begin(dialogue);
+            }
         }
 
     }
@@ -135,10 +136,17 @@ public class UIManagerNPCs : MonoBehaviour
                 {
                     keyDown = false;
                 }
-                else
+
+                else if (!player.talk)
                 {
                     VD.Next(); //Second most important method when using VIDE
                 }
+
+                else if (player.talk)
+                {
+                    player.talk = false;
+                }
+
             }
 
             //Disable item popup and disable pause
@@ -254,7 +262,7 @@ public class UIManagerNPCs : MonoBehaviour
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= End;
         VD.EndDialogue(); //Third most important method when using VIDE     
-
+        player.talk = true;
         VD.SaveState("Tree Village", true); //Saves VIDE stuff related to EVs and override start nodes
         WipeAll();
     }

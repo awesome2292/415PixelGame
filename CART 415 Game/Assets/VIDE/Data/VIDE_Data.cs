@@ -386,7 +386,7 @@ namespace VIDE_Data
 
         public int assignedIndex = 0;
         private static DialogueNode currentPlayerStep;
-        private static ActionNode currentActionNode;
+        public static ActionNode currentActionNode;
         private static ActionNode lastActionNode;
         private static int startPoint = -1;
         private static VIDE_Assign _assigned;
@@ -3272,20 +3272,22 @@ namespace VIDE_Data
                     return;
                 }
 
+                Debug.Log("LastActionNode is " + lastActionNode.gotoNode);
 
-            if (!currentActionNode.pauseHere)
-            {
-                if (lastActionNode.gotoNode > -1)
-                    SetNode(lastActionNode.gotoNode);
+                if (!currentActionNode.pauseHere)
+                {
+                
+                    if (lastActionNode.gotoNode > -1)
+                        SetNode(lastActionNode.gotoNode);
+                    else
+                        Next();
+                }
                 else
-                    Next();
-            }
-            else
-            {
-                if (lastActionNode.gotoNode > -1)
-                    pauseGotoNode = lastActionNode.gotoNode;
-                nodeData.pausedAction = true;
-            }
+                {
+                    if (lastActionNode.gotoNode > -1)
+                        pauseGotoNode = lastActionNode.gotoNode;
+                    nodeData.pausedAction = true;
+                }
 
         }
 
@@ -4078,6 +4080,7 @@ namespace VIDE_Data
         /// </param>
         public NodeData SetNode(int id)
         {
+            Debug.Log("SetNode");
             if (!isActive)
             {
                 Debug.LogError("You must call the 'BeginDialogue()' method before calling this method!");

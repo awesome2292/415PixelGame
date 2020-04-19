@@ -23,9 +23,13 @@ public class SpriteController : MonoBehaviour
     public float RunningSpeed;
     
     public bool questStarted; //Start the quest when you speak to the Secretary
+    public bool talk = true;
 
     //Stored current VA when inside a trigger
     public VIDE_Assign inTrigger;
+
+    public float moralCompass = 0.5f;
+
         
     public List<string> Items = new List<string>(); //List for the possible acquireable items
     public List<string> ItemInventory = new List<string>(); //Items that the player posseses in the current playthrough
@@ -34,9 +38,11 @@ public class SpriteController : MonoBehaviour
     #endregion
 
     private void Awake()
-    {   
+    {
+        //moralCompass = 0.5f;
         // if more then one Sprite is in the scene
         //destroy the one in the scene
+        talk = true;
         Sprites = GameObject.FindGameObjectsWithTag("Player");
         if (Sprites.Length!= 1)
         {
@@ -46,7 +52,6 @@ public class SpriteController : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
-
         //Destroy the Music player from the title screen
         Destroy(GameObject.Find("Sky_loop"));
     }
@@ -66,7 +71,7 @@ public class SpriteController : MonoBehaviour
         SpriteMove();
 
         //Interact with NPCs when pressing I
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             TryInteract();
         }
@@ -153,7 +158,7 @@ public class SpriteController : MonoBehaviour
     {
         /* Prioritize triggers */
         if (inTrigger)
-        {            
+        {
             diagUI.Interact(inTrigger);
             return;
         }

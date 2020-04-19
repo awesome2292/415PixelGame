@@ -256,7 +256,12 @@ public class VIDE_Assign : MonoBehaviour, ISerializationCallbackReceiver
         public string methodName;
         public int paramType;
 
-        public int gotoNode = -1;
+        private int _gotoNode;
+        public int gotoNode
+        {
+            get { return _gotoNode; }
+            set { _gotoNode = value; }
+        }
 
         public bool param_bool;
         public string param_string;
@@ -269,6 +274,8 @@ public class VIDE_Assign : MonoBehaviour, ISerializationCallbackReceiver
 
         public int ovrStartNode = -1;
         public string renameDialogue = string.Empty;
+
+        public ActionNode actionNode;
 
         public ActionNode(int id, string meth, string goMeth, bool pau, bool pb, string ps, int pi, float pf)
         {
@@ -348,7 +355,17 @@ public class VIDE_Assign : MonoBehaviour, ISerializationCallbackReceiver
         public string methodName;
         public int paramType;
 
-        public int gotoNode;
+        private int _gotoNode;
+        public int gotoNode
+        {
+            get { 
+                Debug.Log("Reading goToNode" + _gotoNode);
+
+                return _gotoNode; }
+            set { _gotoNode = value;
+                Debug.Log("setter was called " + value);
+            }
+        }
 
         public bool param_bool;
         public string param_string;
@@ -363,6 +380,9 @@ public class VIDE_Assign : MonoBehaviour, ISerializationCallbackReceiver
         public int ovrStartNode;
         public string renameDialogue;
     }
+
+    public Serialized_actionNodes nodes = new Serialized_actionNodes();
+
     [Serializable]
     public struct Serialized_playerDiags
     {
@@ -434,6 +454,7 @@ public class VIDE_Assign : MonoBehaviour, ISerializationCallbackReceiver
         List<Serialized_actionNodes> S_actionNode = new List<Serialized_actionNodes>();
         foreach (var child in actionNodes)
         {
+            Debug.Log("gotonode="+child.gotoNode);
             Serialized_actionNodes np = new Serialized_actionNodes()
             {
                 gameObjectName = child.gameObjectName,
@@ -450,7 +471,9 @@ public class VIDE_Assign : MonoBehaviour, ISerializationCallbackReceiver
                 ovrStartNode = child.ovrStartNode,
                 renameDialogue = child.renameDialogue,
                 gotoNode = child.gotoNode
+                
             };
+            Debug.Log("gotonode=" + child.gotoNode);
             S_actionNode.Add(np);
         }
         S_actionNodes = S_actionNode;
